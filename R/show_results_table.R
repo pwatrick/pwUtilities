@@ -11,5 +11,6 @@ show_results_table <- function(data_table, length = 100) {
   DT::datatable(data_table,
                 filter = 'top',
                 options = list(pageLength = length,
-                               autoWidth = TRUE))
+                               autoWidth = TRUE,
+                               scrollX = TRUE))
 }
