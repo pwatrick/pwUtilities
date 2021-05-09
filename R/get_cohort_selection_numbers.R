@@ -39,6 +39,8 @@ get_cohort_selection_numbers <- function(drug, phenotype, biomarker, indication_
   r_drugs <- r_drugs %>% filter(person_id %in% overlapping_patients)
   r_biomarkers <- r_biomarkers %>% filter(person_id %in% overlapping_patients)
 
+  n_overlapping_patients <- n_distinct(r_drugs$person_id)
+
   #Define treatment and baseline periods
   p_obsperiod1 <- r_drugs %>%
     select(person_id, start_date, end_date) %>%
@@ -112,15 +114,15 @@ get_cohort_selection_numbers <- function(drug, phenotype, biomarker, indication_
     select(-c("dob", "drug_exposed", "treatment_new_exposed"))
   indication_drug_exposed <- n_distinct(drug_subcohorts1_exposed$person_id)
   indication_drug_notexposed <- n_distinct(processed_biomarker_values$person_id)
+  indication_drug_notexposed <- indication_drug_notexposed - 1
 
   #Biomarker filter removed
-  biomarker_filter = outpatient_exposed-less_30_exposure-age_num_removed-indication_drug_exposed-indication_drug_notexposed
+  biomarker_filter <- n_overlapping_patients-less_30_exposure-age_num_removed-indication_drug_exposed-indication_drug_notexposed
 
   output_t <- tibble(
     drug = drug,
     phenotype = phenotype,
-    outpatient_exposed = outpatient_exposed,
-    overlapping_patients = overlapping_patients,
+    n_overlapping_patients = n_overlapping_patients,
     less_30_exposure = less_30_exposure,
     age_num_removed = age_num_removed,
     biomarker_filter = biomarker_filter,
