@@ -1,7 +1,7 @@
 #' Get cohort selection numbers for drug repurposing
 #'
 #' @details
-#' Last updated: 2021-03-27
+#' Last updated: 2021-05-09
 #'
 #' @param drug A string, e.g., "simvastatin"
 #' @param phenotype A string, e.g., "hyperlipidemia"
@@ -120,6 +120,7 @@ get_cohort_selection_numbers <- function(drug, phenotype, biomarker, indication_
     drug = drug,
     phenotype = phenotype,
     outpatient_exposed = outpatient_exposed,
+    overlapping_patients = overlapping_patients,
     less_30_exposure = less_30_exposure,
     age_num_removed = age_num_removed,
     biomarker_filter = biomarker_filter,

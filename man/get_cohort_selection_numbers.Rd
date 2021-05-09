@@ -33,5 +33,5 @@ get_cohort_selection_numbers(
 Get cohort selection numbers for drug repurposing
 }
 \details{
-Last updated: 2021-03-27
+Last updated: 2021-05-09
 }
