@@ -1,7 +1,7 @@
 #' Get cohort selection numbers for drug repurposing
 #'
 #' @details
-#' Last updated: 2021-05-09
+#' Last updated: 2021-10-15
 #'
 #' @param drug A string, e.g., "simvastatin"
 #' @param phenotype A string, e.g., "hyperlipidemia"
@@ -114,7 +114,6 @@ get_cohort_selection_numbers <- function(drug, phenotype, biomarker, indication_
     select(-c("dob", "drug_exposed", "treatment_new_exposed"))
   indication_drug_exposed <- n_distinct(drug_subcohorts1_exposed$person_id)
   indication_drug_notexposed <- n_distinct(processed_biomarker_values$person_id)
-  indication_drug_notexposed <- indication_drug_notexposed - 1
 
   #Biomarker filter removed
   biomarker_filter <- n_overlapping_patients-less_30_exposure-age_num_removed-indication_drug_exposed-indication_drug_notexposed
